@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Разпознаване на рисувани математически символи с k-NN.">
+<title>Разпознаване на математически знаци и геометрични форми</title>
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.mjs"></script>
+</head>
+<body>
+<main>
+<header>
+  <p class="course">ПРОГРАМИРАНЕ НА ИЗКУСТВЕН ИНТЕЛЕКТ</p>
+  <h1>Разпознаване на<br>знаци и геометрични форми</h1>
+  <p>Нарисувай един математически знак или геометрична форма.</p>
+</header>
+<div class="workspace">
+  <section class="drawing" aria-labelledby="draw-label">
+    <h2 id="draw-label">Рисунка</h2>
+    <div class="drawing-surface">
+      <canvas id="drawing-pad" width="512" height="512" tabindex="0" aria-label="Платно за рисуване. Стрелки за движение, Shift и стрелки за линии, интервал за точка."></canvas>
+      <span id="drawing-cursor" aria-hidden="true"></span>
+    </div>
+    <div class="actions">
+      <button id="recognize" class="primary" disabled>Разпознай</button>
+      <button id="clear">Изчисти</button>
+    </div>
+  </section>
+  <div class="sidebar">
+    <section class="result" aria-labelledby="result-label">
+      <h2 id="result-label">Резултат</h2>
+      <div role="status" aria-live="polite">
+        <div id="symbol" class="symbol" aria-hidden="true">…</div>
+        <p id="status">Зареждане на модела…</p>
+        <ul id="votes" class="votes" aria-label="Гласове на петте най-близки съседи"></ul>
+      </div>
+    </section>
+    <section aria-labelledby="examples-label">
+      <h2 id="examples-label">Примери</h2>
+      <h3>Математически знаци</h3>
+      <div class="examples" id="sign-examples"></div>
+      <h3>Геометрични форми</h3>
+      <div class="examples" id="shape-examples"></div>
+      <details class="drawing-guide">
+        <summary>Как да начертая знаците?</summary>
+        <p>За <b>*</b> използвай три пресичащи се линии, за <b>×</b> — два диагонала, а за <b>÷</b> — хоризонтална линия и две точки. Рисувай фигурите като контури.</p>
+      </details>
+    </section>
+    <section class="metrics">
+      <h2>Тестова точност</h2>
+      <p id="metrics-summary"></p>
+      <details>
+        <summary>Резултат по класове</summary>
+        <table>
+          <thead><tr><th scope="col">Знак или форма</th><th scope="col">Верни</th></tr></thead>
+          <tbody id="class-scores"></tbody>
+        </table>
+      </details>
+      <a href="Pismena_Teoria.pdf">Писмена теория и анализ ↗</a>
+    </section>
+  </div>
+</div>
+<footer>Ивайло Светославов Стоянов · Вариант А <a href="Proekt_Ivaylo_Stoyanov_Web.zip" download>Изтегли проекта ↓</a></footer>
+</main>
+</body>
+</html>
